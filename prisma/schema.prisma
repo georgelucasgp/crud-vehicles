@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+model VehiclesInformation {
+  id            String   @id @default(uuid())
+  license_plate String   @unique
+  chassis       String   @unique
+  renavam       Decimal  @unique
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  vehiclesModelId String?
+  vehiclesmodel   VehiclesModel? @relation(fields: [vehiclesModelId], references: [id])
+
+  @@map("vehicles_information")
+}
+
+model VehiclesModel {
+  id         String   @id @default(uuid())
+  model      String   @unique
+  brand      String
+  model_year Decimal
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  VehiclesInformation VehiclesInformation[]
+
+  @@map("vehicles_model")
+}
