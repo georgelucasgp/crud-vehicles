@@ -11,29 +11,28 @@ generator erd {
   provider = "prisma-erd-generator"
 }
 
-model VehiclesInformation {
-  id            String   @id @default(uuid())
+model Vehicle {
+  id            String   @id
   license_plate String   @unique
-  chassis       String   @unique
-  renavam       Decimal  @unique
+  chassis       String
+  renavam       String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 
-  vehiclesModelId String?
-  vehiclesmodel   VehiclesModel? @relation(fields: [vehiclesModelId], references: [id])
+  vehicles_model    VehicleModel @relation(fields: [vehicles_model_id], references: [id])
+  vehicles_model_id String
 
-  @@map("vehicles_information")
+  @@map("vehicle")
 }
 
-model VehiclesModel {
-  id         String   @id @default(uuid())
-  model      String   @unique
+model VehicleModel {
+  id         String    @id
+  model      String    @unique
   brand      String
   model_year Decimal
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  vehicles   Vehicle[]
 
-  VehiclesInformation VehiclesInformation[]
-
-  @@map("vehicles_model")
+  @@map("vehicle_model")
 }

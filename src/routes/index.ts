@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { vehiclesmodelRoutes } from "./vehiclesmodel.routes";
-import { vehiclesinformationRoutes } from "./vehiclesinformation.routes";
+import { vehiclesModelRoutes } from './vehicles_model.routes';
+import { vehiclesRoutes } from './vehicles.routes';
 
 const routes = Router();
 
-routes.use("/", vehiclesmodelRoutes);
-routes.use("/", vehiclesinformationRoutes);
+routes.use('/', vehiclesModelRoutes);
+routes.use('/', vehiclesRoutes);
 
 export { routes };
