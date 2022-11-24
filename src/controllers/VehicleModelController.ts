@@ -26,7 +26,7 @@ export class VehicleModelController {
 
   async store(request: Request, response: Response) {
     const id = randomUUID();
-    const { model, brand, model_year } = request.body;
+    const { model, brand, model_year }: VehicleModelDTO = request.body;
     const createVehicleModelService = new CreateVehicleModelService();
     const vehicleModel = await createVehicleModelService.handler({
       id,

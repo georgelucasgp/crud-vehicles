@@ -1,5 +1,6 @@
 import AppError from '../../errors/AppError';
 import VehicleModelRepository from '../../repositories/VehicleModelRepository';
+import { VehicleModelDTO } from './../../dto/VehicleModelDTO';
 
 class ShowVehicleService {
   private vehicleModelRepository: VehicleModelRepository;
@@ -8,9 +9,8 @@ class ShowVehicleService {
     this.vehicleModelRepository = new VehicleModelRepository();
   }
 
-  async handler(id: string) {
-    const vehicleModelAlreadyExists =
-      await this.vehicleModelRepository.findById(id);
+  async handler(id: string): Promise<VehicleModelDTO | null> {
+    const vehicleModelAlreadyExists = await this.vehicleModelRepository.findById(id);
 
     if (!vehicleModelAlreadyExists) {
       throw new AppError('Vehicle Model does not exist', 400);

@@ -10,8 +10,7 @@ class CreateVehicleService {
   }
 
   async handler({ id, model, brand, model_year }: VehicleModelDTO) {
-    const vehiclesModalAlreadyExists =
-      await this.vehicleModelRepository.findByModel(model);
+    const vehiclesModalAlreadyExists = await this.vehicleModelRepository.findByModel(model);
 
     if (vehiclesModalAlreadyExists) {
       throw new AppError('Vehicle Model Already Exists', 400);

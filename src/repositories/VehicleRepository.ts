@@ -1,16 +1,14 @@
-import { Vehicle } from '@prisma/client';
-
 import { prisma } from '../database/prismaClient';
 import { VehicleDTO } from '../dto/VehicleDTO';
 
 class VehicleRepository {
-  async list(): Promise<Vehicle[] | null> {
+  async list(): Promise<VehicleDTO[] | null> {
     const vehicle = await prisma.vehicle.findMany();
 
     return vehicle;
   }
 
-  async show(id: string): Promise<Vehicle | null> {
+  async show(id: string): Promise<VehicleDTO | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         id,
@@ -35,7 +33,7 @@ class VehicleRepository {
     chassis,
     renavam,
     vehicles_model_id,
-  }: VehicleDTO): Promise<Vehicle> {
+  }: VehicleDTO): Promise<VehicleDTO> {
     const vehicle = await prisma.vehicle.create({
       data: {
         id,
@@ -55,7 +53,7 @@ class VehicleRepository {
     chassis,
     renavam,
     vehicles_model_id,
-  }: VehicleDTO): Promise<Vehicle> {
+  }: VehicleDTO): Promise<VehicleDTO> {
     const vehicle = await prisma.vehicle.update({
       where: {
         id,
@@ -71,7 +69,7 @@ class VehicleRepository {
     return vehicle;
   }
 
-  async delete(id: string): Promise<Vehicle | null> {
+  async delete(id: string): Promise<VehicleDTO | null> {
     const vehicle = await prisma.vehicle.delete({
       where: {
         id,
@@ -81,7 +79,7 @@ class VehicleRepository {
     return vehicle;
   }
 
-  async findByLicensePlate(license_plate: string): Promise<Vehicle | null> {
+  async findByLicensePlate(license_plate: string): Promise<VehicleDTO | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         license_plate,
@@ -90,7 +88,7 @@ class VehicleRepository {
 
     return vehicle;
   }
-  async findById(id: string): Promise<Vehicle | null> {
+  async findById(id: string): Promise<VehicleDTO | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         id,

@@ -29,7 +29,7 @@ model VehicleModel {
   id         String    @id
   model      String    @unique
   brand      String
-  model_year Decimal
+  model_year Int
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   vehicles   Vehicle[]

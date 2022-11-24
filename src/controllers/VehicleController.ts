@@ -26,8 +26,7 @@ export class VehicleController {
 
   async store(request: Request, response: Response) {
     const id = randomUUID();
-    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO =
-      request.body;
+    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO = request.body;
 
     const createVehicleService = new CreateVehicleService();
     const vehicle = await createVehicleService.handler({
@@ -43,8 +42,7 @@ export class VehicleController {
 
   async put(request: Request, response: Response) {
     const { id } = request.params;
-    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO =
-      request.body;
+    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO = request.body;
 
     const updateVehicleService = new UpdateVehicleService();
     const vehicle = await updateVehicleService.handler({

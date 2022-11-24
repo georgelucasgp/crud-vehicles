@@ -12,22 +12,18 @@ class CreateVehicleService {
     this.vehicleRepository = new VehicleRepository();
   }
 
-  async handler({
-    id,
-    license_plate,
-    chassis,
-    renavam,
-    vehicles_model_id,
-  }: VehicleDTO) {
-    const vehiclesModalAlreadyExists =
-      await this.vehicleModelRepository.findById(vehicles_model_id);
+  async handler({ id, license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO) {
+    const vehiclesModalAlreadyExists = await this.vehicleModelRepository.findById(
+      vehicles_model_id,
+    );
 
     if (!vehiclesModalAlreadyExists) {
       throw new AppError('Vehicle Model does not exists', 400);
     }
 
-    const vehicleLicensePlateAlreadyExists =
-      await this.vehicleRepository.findByLicensePlate(license_plate);
+    const vehicleLicensePlateAlreadyExists = await this.vehicleRepository.findByLicensePlate(
+      license_plate,
+    );
 
     if (vehicleLicensePlateAlreadyExists) {
       throw new AppError('Vehicle License Plate Already Exists', 400);
