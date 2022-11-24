@@ -1,66 +1,50 @@
-import { randomUUID } from 'crypto';
-import { Request, Response } from 'express';
+// import { Request, Response } from 'express';
 
-import { VehicleDTO } from '../dto/VehicleDTO';
-import CreateVehicleService from '../services/vehicles/CreateVehicleService';
-import DeleteVehicleService from '../services/vehicles/DeleteVehicleService';
-import ListVehicleService from '../services/vehicles/ListVehicleService';
-import ShowVehicleService from '../services/vehicles/ShowVehicleService';
-import UpdateVehicleService from '../services/vehicles/UpdateVehicleService';
+// import DeleteVehicleService from '../../../services/vehicles/DeleteVehicleService';
+// import ListVehicleService from '../../../services/vehicles/ListVehicleService';
+// import ShowVehicleService from '../../../services/vehicles/ShowVehicleService';
+// import UpdateVehicleService from '../../../services/vehicles/UpdateVehicleService';
+// import CreateVehicleService from '../modules/vehicle/createVehicle/CreateVehicleServiceervice';
 
-export class VehicleController {
-  async index(request: Request, response: Response) {
-    const listVehicleService = new ListVehicleService();
-    const vehicle = await listVehicleService.handler();
+// export class VehicleController {
+//   constructor(private createVehicleService: CreateVehicleService) {}
 
-    return response.json(vehicle);
-  }
+//   async index(request: Request, response: Response) {
+//     const listVehicleService = new ListVehicleService();
+//     const vehicle = await listVehicleService.handler();
 
-  async show(request: Request, response: Response) {
-    const { id } = request.params;
-    const showVehicleService = new ShowVehicleService();
-    const vehicle = await showVehicleService.handler(id);
+//     return response.json(vehicle);
+//   }
 
-    return response.json(vehicle);
-  }
+//   async show(request: Request, response: Response) {
+//     const { id } = request.params;
+//     const showVehicleService = new ShowVehicleService();
+//     const vehicle = await showVehicleService.handler(id);
 
-  async store(request: Request, response: Response) {
-    const id = randomUUID();
-    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO = request.body;
+//     return response.json(vehicle);
+//   }
 
-    const createVehicleService = new CreateVehicleService();
-    const vehicle = await createVehicleService.handler({
-      id,
-      license_plate,
-      chassis,
-      renavam,
-      vehicles_model_id,
-    });
+//   async put(request: Request, response: Response) {
+//     const { id } = request.params;
+//     const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO = request.body;
 
-    return response.json(vehicle);
-  }
+//     const updateVehicleService = new UpdateVehicleService();
+//     const vehicle = await updateVehicleService.handler({
+//       id,
+//       license_plate,
+//       chassis,
+//       renavam,
+//       vehicles_model_id,
+//     });
 
-  async put(request: Request, response: Response) {
-    const { id } = request.params;
-    const { license_plate, chassis, renavam, vehicles_model_id }: VehicleDTO = request.body;
+//     return response.json(vehicle);
+//   }
 
-    const updateVehicleService = new UpdateVehicleService();
-    const vehicle = await updateVehicleService.handler({
-      id,
-      license_plate,
-      chassis,
-      renavam,
-      vehicles_model_id,
-    });
+//   async delete(request: Request, response: Response) {
+//     const { id } = request.params;
+//     const deleteVehicleService = new DeleteVehicleService();
+//     const vehicle = await deleteVehicleService.handler(id);
 
-    return response.json(vehicle);
-  }
-
-  async delete(request: Request, response: Response) {
-    const { id } = request.params;
-    const deleteVehicleService = new DeleteVehicleService();
-    const vehicle = await deleteVehicleService.handler(id);
-
-    return response.json(vehicle);
-  }
-}
+//     return response.json(vehicle);
+//   }
+// }

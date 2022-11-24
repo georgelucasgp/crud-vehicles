@@ -1,6 +1,6 @@
+import { IVehicleRequestDTO } from '../../dto/IVehicleRequestDTO';
 import AppError from '../../errors/AppError';
 import VehicleRepository from '../../repositories/VehicleRepository';
-import { VehicleDTO } from './../../dto/VehicleDTO';
 
 class ShowVehicleService {
   private vehicleRepository: VehicleRepository;
@@ -9,7 +9,7 @@ class ShowVehicleService {
     this.vehicleRepository = new VehicleRepository();
   }
 
-  async handler(id: string): Promise<VehicleDTO | null> {
+  async handler(id: string): Promise<IVehicleRequestDTO | null> {
     const vehicleAlreadyExists = await this.vehicleRepository.findById(id);
 
     if (!vehicleAlreadyExists) {

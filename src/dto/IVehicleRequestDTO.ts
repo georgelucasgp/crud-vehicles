@@ -1,5 +1,5 @@
-export interface VehicleDTO {
-  id: string;
+export interface IVehicleRequestDTO {
+  id?: string;
   license_plate: string;
   chassis: string;
   renavam: string;

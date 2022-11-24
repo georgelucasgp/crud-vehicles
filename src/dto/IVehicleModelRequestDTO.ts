@@ -1,5 +1,5 @@
-export interface VehicleModelDTO {
-  id: string;
+export interface IVehicleModelRequestDTO {
+  id?: string;
   model: string;
   brand: string;
   model_year: number;
