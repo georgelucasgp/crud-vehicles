@@ -3,7 +3,17 @@ import { Vehicle } from '../../entities/Vehicle';
 import { IVehiclesRepositories } from '../IVehiclesRepositories';
 
 class PrismaVehicleRepository implements IVehiclesRepositories {
-  async exists(license_plate: string): Promise<boolean> {
+  async findById(id: string): Promise<boolean> {
+    const vehicle = await prisma.vehicle.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return !!vehicle;
+  }
+
+  async findByLicensePlate(license_plate: string): Promise<boolean> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         license_plate,
@@ -19,10 +29,10 @@ class PrismaVehicleRepository implements IVehiclesRepositories {
     return vehicle;
   }
 
-  async show(license_plate: string): Promise<Vehicle> {
+  async show(id: string): Promise<Vehicle | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
-        license_plate,
+        id,
       },
       include: {
         vehicles_model: {
@@ -38,35 +48,25 @@ class PrismaVehicleRepository implements IVehiclesRepositories {
     return vehicle;
   }
 
-  async create({ license_plate, chassis, renavam, vehicles_model_id }: Vehicle): Promise<void> {
+  async create(data: Vehicle): Promise<void> {
     await prisma.vehicle.create({
-      data: {
-        license_plate,
-        chassis,
-        renavam,
-        vehicles_model_id,
-      },
+      data,
     });
   }
 
-  async put({ license_plate, chassis, renavam, vehicles_model_id }: Vehicle): Promise<void> {
+  async update(data: Vehicle): Promise<void> {
     await prisma.vehicle.update({
       where: {
-        license_plate,
+        id: data.id,
       },
-      data: {
-        license_plate,
-        chassis,
-        renavam,
-        vehicles_model_id,
-      },
+      data,
     });
   }
 
-  async delete(license_plate: string): Promise<void> {
+  async delete(id: string): Promise<void> {
     await prisma.vehicle.delete({
       where: {
-        license_plate,
+        id,
       },
     });
   }

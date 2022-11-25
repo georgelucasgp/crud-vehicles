@@ -3,10 +3,10 @@ import { VehicleModel } from '../../entities/VehicleModel';
 import { IVehiclesModelRepositories } from '../IVehiclesModelRepositories';
 
 class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
-  async exists(license_plate: string): Promise<boolean> {
+  async exists(model: string): Promise<boolean> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
-        license_plate,
+        model,
       },
     });
 
@@ -19,7 +19,7 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     return vehicleModel;
   }
 
-  async show(model: string): Promise<VehicleModel> {
+  async show(model: string): Promise<VehicleModel | null> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
         model,
@@ -39,7 +39,7 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     });
   }
 
-  async put({ model, brand, model_year }: VehicleModel): Promise<void> {
+  async update({ model, brand, model_year }: VehicleModel): Promise<void> {
     await prisma.vehicleModel.update({
       where: {
         model,

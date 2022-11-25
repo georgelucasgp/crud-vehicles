@@ -1,10 +1,11 @@
 import { Vehicle } from '../entities/Vehicle';
 
 export interface IVehiclesRepositories {
-  exists(license_plate: string): Promise<boolean>;
-  list(): Promise<Vehicle[]>;
-  show(license_plate: string): Promise<Vehicle>;
+  findById(id: string): Promise<boolean>;
+  findByLicensePlate(license_plate: string): Promise<boolean>;
+  list(): Promise<Vehicle[] | null>;
+  show(id: string): Promise<Vehicle | null>;
   create(vehicle: Vehicle): Promise<void>;
-  put(vehicle: Vehicle): Promise<void>;
-  delete(license_plate: string): Promise<void>;
+  update(vehicle: Vehicle): Promise<void>;
+  delete(id: string): Promise<void>;
 }

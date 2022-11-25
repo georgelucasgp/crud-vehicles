@@ -1,19 +1,27 @@
 import { Router } from 'express';
 
-import { createVehicleFactory } from '../modules/vehicle/createVehicle/createVehicleFactory';
-import { deleteVehicleFactory } from '../modules/vehicle/deleteVehicle/deleteVehicleFactory';
-import { updateVehicleFactory } from '../modules/vehicle/updateVehicle/updateVehicleFactory';
+import { vehicleFactory } from '../modules/vehicle';
 
 const vehiclesRoutes = Router();
 
-vehiclesRoutes.post('/vehicles', createVehicleFactory().store);
+vehiclesRoutes.post('/vehicles', (request, response) =>
+  vehicleFactory().store(request, response),
+);
 
-// vehiclesRoutes.get('/vehicles/:id', new VehicleController().show);
+vehiclesRoutes.get('/vehicles/:id/show', (request, response) =>
+  vehicleFactory().show(request, response),
+);
 
-// vehiclesRoutes.get('/vehicles', new VehicleController().index);
+vehiclesRoutes.get('/vehicles', (request, response) =>
+  vehicleFactory().list(request, response),
+);
 
-vehiclesRoutes.put('/vehicles/:id', updateVehicleFactory().put);
+vehiclesRoutes.put('/vehicles/:id', (request, response) =>
+  vehicleFactory().update(request, response),
+);
 
-vehiclesRoutes.delete('/vehicles/:id', deleteVehicleFactory().delete);
+vehiclesRoutes.delete('/vehicles/:id', (request, response) =>
+  vehicleFactory().delete(request, response),
+);
 
 export { vehiclesRoutes };

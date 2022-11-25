@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { vehiclesModelRoutes } from './vehicles_model.routes';
 import { vehiclesRoutes } from './vehicles.routes';
+import { vehiclesModelRoutes } from './vehiclesModel.routes';
 
 const routes = Router();
 
