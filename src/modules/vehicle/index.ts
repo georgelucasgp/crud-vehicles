@@ -1,6 +1,6 @@
 import PrismaVehicleRepository from '../../repositories/prisma/PrismaVehicleRepository';
 import { VehicleController } from './controllers/VehicleController';
-import VehicleService from './controllers/VehicleService';
+import VehicleService from './services/VehicleService';
 
 export const vehicleFactory = () => {
   const vehicleRepository = new PrismaVehicleRepository();

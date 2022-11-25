@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import VehicleService from './VehicleService';
+import VehicleService from '../services/VehicleService';
 
 export class VehicleController {
   constructor(private vehicleService: VehicleService) {}

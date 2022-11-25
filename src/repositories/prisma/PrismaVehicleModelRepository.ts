@@ -3,7 +3,17 @@ import { VehicleModel } from '../../entities/VehicleModel';
 import { IVehiclesModelRepositories } from '../IVehiclesModelRepositories';
 
 class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
-  async exists(model: string): Promise<boolean> {
+  async findById(id: string): Promise<boolean> {
+    const vehicleModel = await prisma.vehicleModel.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return !!vehicleModel;
+  }
+
+  async findByModel(model: string): Promise<boolean> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
         model,
@@ -19,10 +29,10 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     return vehicleModel;
   }
 
-  async show(model: string): Promise<VehicleModel | null> {
+  async show(id: string): Promise<VehicleModel | null> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
-        model,
+        id,
       },
     });
 
@@ -39,10 +49,10 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     });
   }
 
-  async update({ model, brand, model_year }: VehicleModel): Promise<void> {
+  async update({ id, model, brand, model_year }: VehicleModel): Promise<void> {
     await prisma.vehicleModel.update({
       where: {
-        model,
+        id,
       },
       data: {
         model,
@@ -52,10 +62,10 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     });
   }
 
-  async delete(model: string): Promise<void> {
+  async delete(id: string): Promise<void> {
     await prisma.vehicleModel.delete({
       where: {
-        model,
+        id,
       },
     });
   }

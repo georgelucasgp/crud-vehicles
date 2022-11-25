@@ -8,7 +8,7 @@ vehiclesModelRoutes.post('/vehicles-model', (request, response) =>
   vehicleModelFactory().store(request, response),
 );
 
-vehiclesModelRoutes.get('/vehicles-model/:model', (request, response) =>
+vehiclesModelRoutes.get('/vehicles-model/:id/show', (request, response) =>
   vehicleModelFactory().show(request, response),
 );
 
@@ -16,13 +16,11 @@ vehiclesModelRoutes.get('/vehicles-model', (request, response) =>
   vehicleModelFactory().list(request, response),
 );
 
-vehiclesModelRoutes.put('/vehicles-model/:model', (request, response) =>
+vehiclesModelRoutes.put('/vehicles-model/:id', (request, response) =>
   vehicleModelFactory().update(request, response),
 );
 
-vehiclesModelRoutes.delete(
-  '/vehicles-model/:model',
-  vehicleModelFactory().delete,
+vehiclesModelRoutes.delete('/vehicles-model/:id', (request, response) =>
+  vehicleModelFactory().delete(request, response),
 );
-
 export { vehiclesModelRoutes };

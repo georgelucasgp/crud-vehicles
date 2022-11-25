@@ -6,16 +6,15 @@ import { IVehiclesModelRepositories } from '../../../repositories/IVehiclesModel
 class VehicleModelService {
   constructor(private vehicleModelRepository: IVehiclesModelRepositories) {}
 
-  async show(model: string) {
-    const vehicleModelAlreadyExists = await this.vehicleModelRepository.exists(
-      model,
-    );
+  async show(id: string) {
+    const vehicleModelAlreadyExists =
+      await this.vehicleModelRepository.findById(id);
 
     if (!vehicleModelAlreadyExists) {
       throw new AppError('Vehicle does not exist', 400);
     }
 
-    const vehicleModel = await this.vehicleModelRepository.show(model);
+    const vehicleModel = await this.vehicleModelRepository.show(id);
     return vehicleModel;
   }
 
@@ -24,44 +23,39 @@ class VehicleModelService {
     return vehicleModel;
   }
 
-  async create(data: IVehicleModelRequestDTO) {
-    const vehicleModelAlreadyExists = await this.vehicleModelRepository.exists(
-      data.model,
-    );
+  async create(data: Omit<IVehicleModelRequestDTO, 'id'>) {
+    const vehicleModelAlreadyExists =
+      await this.vehicleModelRepository.findByModel(data.model);
 
     if (vehicleModelAlreadyExists) {
       throw new AppError('Vehicle Already Exists', 400);
     }
 
     const vehicleModel = new VehicleModel(data);
-
     await this.vehicleModelRepository.create(vehicleModel);
   }
 
-  async update({ id, model, brand, model_year }: IVehicleModelRequestDTO) {
-    const vehicleModelAlreadyExists = await this.vehicleModelRepository.exists(
-      model,
-    );
-
-    if (!vehicleModelAlreadyExists) {
-      throw new AppError('Vehicle does not exist', 400);
-    }
-
-    const vehicleModel = new VehicleModel({ id, model, brand, model_year });
-    await this.vehicleModelRepository.update(vehicleModel);
-  }
-
-  async delete(data: IVehicleModelRequestDTO) {
-    const vehicleModelAlreadyExists = await this.vehicleModelRepository.exists(
-      data.model,
-    );
+  async update(data: IVehicleModelRequestDTO) {
+    const vehicleModelAlreadyExists =
+      await this.vehicleModelRepository.findById(data.id);
 
     if (!vehicleModelAlreadyExists) {
       throw new AppError('Vehicle does not exist', 400);
     }
 
     const vehicleModel = new VehicleModel(data);
-    await this.vehicleModelRepository.delete(vehicleModel.model);
+    await this.vehicleModelRepository.update(vehicleModel);
+  }
+
+  async delete(id: string) {
+    const vehicleModelAlreadyExists =
+      await this.vehicleModelRepository.findById(id);
+
+    if (!vehicleModelAlreadyExists) {
+      throw new AppError('Vehicle does not exist', 400);
+    }
+
+    await this.vehicleModelRepository.delete(id);
   }
 }
 
