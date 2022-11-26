@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import VehicleService from '../services/VehicleService';
 
 export class VehicleController {
-  constructor(private vehicleService: VehicleService) {}
-
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
     try {
-      const vehicle = await this.vehicleService.show(id);
+      const vehicleService = container.resolve(VehicleService);
+      const vehicle = await vehicleService.show(id);
 
       return response.status(200).json(vehicle);
     } catch (error) {
@@ -19,7 +19,9 @@ export class VehicleController {
 
   async list(request: Request, response: Response) {
     try {
-      const vehicle = await this.vehicleService.list();
+      const vehicleService = container.resolve(VehicleService);
+
+      const vehicle = await vehicleService.list();
 
       return response.status(200).json(vehicle);
     } catch (error) {
@@ -31,7 +33,9 @@ export class VehicleController {
     const { license_plate, chassis, renavam, vehicles_model_id } = request.body;
 
     try {
-      await this.vehicleService.create({
+      const vehicleService = container.resolve(VehicleService);
+
+      await vehicleService.create({
         license_plate,
         chassis,
         renavam,
@@ -49,7 +53,9 @@ export class VehicleController {
     const { license_plate, chassis, renavam, vehicles_model_id } = request.body;
 
     try {
-      await this.vehicleService.update({
+      const vehicleService = container.resolve(VehicleService);
+
+      await vehicleService.update({
         id,
         license_plate,
         chassis,
@@ -67,7 +73,9 @@ export class VehicleController {
     const { id } = request.params;
 
     try {
-      await this.vehicleService.delete(id);
+      const vehicleService = container.resolve(VehicleService);
+
+      await vehicleService.delete(id);
 
       return response.status(200).json();
     } catch (error) {

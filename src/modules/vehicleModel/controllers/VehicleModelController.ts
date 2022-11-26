@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import VehicleModelService from '../services/VehicleModelService';
 
 export class VehicleModelController {
-  constructor(private vehicleModelService: VehicleModelService) {}
-
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
     try {
-      const vehicleModel = await this.vehicleModelService.show(id);
+      const vehicleModelService = container.resolve(VehicleModelService);
+
+      const vehicleModel = await vehicleModelService.show(id);
       return response.status(200).json(vehicleModel);
     } catch (error) {
       return response.status(400).json({ message: error });
@@ -18,7 +19,9 @@ export class VehicleModelController {
 
   async list(request: Request, response: Response) {
     try {
-      const vehicleModel = await this.vehicleModelService.list();
+      const vehicleModelService = container.resolve(VehicleModelService);
+
+      const vehicleModel = await vehicleModelService.list();
 
       return response.status(200).json(vehicleModel);
     } catch (error) {
@@ -30,7 +33,9 @@ export class VehicleModelController {
     const { model, brand, model_year } = request.body;
 
     try {
-      await this.vehicleModelService.create({
+      const vehicleModelService = container.resolve(VehicleModelService);
+
+      await vehicleModelService.create({
         model,
         brand,
         model_year,
@@ -47,7 +52,9 @@ export class VehicleModelController {
     const { model, brand, model_year } = request.body;
 
     try {
-      await this.vehicleModelService.update({
+      const vehicleModelService = container.resolve(VehicleModelService);
+
+      await vehicleModelService.update({
         id,
         model,
         brand,
@@ -64,7 +71,9 @@ export class VehicleModelController {
     const { id } = request.params;
 
     try {
-      await this.vehicleModelService.delete(id);
+      const vehicleModelService = container.resolve(VehicleModelService);
+
+      await vehicleModelService.delete(id);
 
       return response.status(200).json();
     } catch (error) {

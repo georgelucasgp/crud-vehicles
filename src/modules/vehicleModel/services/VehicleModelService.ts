@@ -1,10 +1,16 @@
+import { inject, injectable } from 'tsyringe';
+
 import { IVehicleModelRequestDTO } from '../../../dto/IVehicleModelRequestDTO';
 import { VehicleModel } from '../../../entities/VehicleModel';
 import AppError from '../../../errors/AppError';
 import { IVehiclesModelRepositories } from '../../../repositories/IVehiclesModelRepositories';
 
+@injectable()
 class VehicleModelService {
-  constructor(private vehicleModelRepository: IVehiclesModelRepositories) {}
+  constructor(
+    @inject('PrismaVehicleModelRepository')
+    private vehicleModelRepository: IVehiclesModelRepositories,
+  ) {}
 
   async show(id: string) {
     const vehicleModelAlreadyExists =

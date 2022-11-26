@@ -1,26 +1,26 @@
 import { Router } from 'express';
 
-import { vehicleModelFactory } from '../modules/vehicleModel';
+import { VehicleModelController } from '../modules/vehicleModel/controllers/VehicleModelController';
 
 const vehiclesModelRoutes = Router();
 
 vehiclesModelRoutes.post('/vehicles-model', (request, response) =>
-  vehicleModelFactory().store(request, response),
+  new VehicleModelController().store(request, response),
 );
 
 vehiclesModelRoutes.get('/vehicles-model/:id/show', (request, response) =>
-  vehicleModelFactory().show(request, response),
+  new VehicleModelController().show(request, response),
 );
 
 vehiclesModelRoutes.get('/vehicles-model', (request, response) =>
-  vehicleModelFactory().list(request, response),
+  new VehicleModelController().list(request, response),
 );
 
 vehiclesModelRoutes.put('/vehicles-model/:id', (request, response) =>
-  vehicleModelFactory().update(request, response),
+  new VehicleModelController().update(request, response),
 );
 
 vehiclesModelRoutes.delete('/vehicles-model/:id', (request, response) =>
-  vehicleModelFactory().delete(request, response),
+  new VehicleModelController().delete(request, response),
 );
 export { vehiclesModelRoutes };
