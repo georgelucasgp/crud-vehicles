@@ -1,11 +1,9 @@
 import { container } from 'tsyringe';
 
-import { IVehiclesModelRepositories } from '../../repositories/IVehiclesModelRepositories';
-import PrismaVehicleModelRepository from '../../repositories/prisma/PrismaVehicleModelRepository';
-import PrismaVehicleRepository from '../../repositories/prisma/PrismaVehicleRepository';
-import { IVehiclesRepositories } from './../../repositories/IVehiclesRepositories';
+import PrismaVehicleRepository from '../../modules/vehicles/infra/repositories/implementation/PrismaVehicleRepository';
+import { IVehicleRepository } from './../../modules/vehicles/infra/repositories/IVehicleRepository';
 
-container.registerSingleton<IVehiclesRepositories>(
+container.registerSingleton<IVehicleRepository>(
   'PrismaVehicleRepository',
   PrismaVehicleRepository,
 );
