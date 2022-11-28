@@ -1,6 +1,7 @@
-import AppError from '../../../../shared/errors/AppError';
-import { Vehicle } from '../../entities/Vehicle';
-import { VehicleRepositoryInMemory } from '../../infra/repositories/in-memory/VehicleRepositoryInMemory';
+import { Vehicle } from '@modules/vehicles/entities/Vehicle';
+import { VehicleRepositoryInMemory } from '@modules/vehicles/infra/repositories/in-memory/VehicleRepositoryInMemory';
+import AppError from '@shared/errors/AppError';
+
 import { CreateVehicleUseCase } from './CreateVehicleUseCase';
 
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
@@ -17,7 +18,7 @@ describe('Create Vehicle', () => {
   it('should be able to create a new vehicle', async () => {
     vehicleData = {
       license_plate: 'AAA-0000',
-      chassis: '9BWZZZ377',
+      chassis: 'ABCDEFG',
       renavam: '123456789',
       vehicles_model_id: '1',
     };
@@ -30,7 +31,7 @@ describe('Create Vehicle', () => {
   it('should not be able to create a new vehicle with license plate already exists', async () => {
     vehicleData = {
       license_plate: 'AAA-1111',
-      chassis: '9BWZZZ377',
+      chassis: 'ABCDEFG',
       renavam: '123456789',
       vehicles_model_id: '1',
     };

@@ -1,7 +1,6 @@
+import { vehicleModelsRoutes } from '@modules/vehicleModel/infra/http/routes/vehicleModelsRoutes';
+import { vehiclesRoutes } from '@modules/vehicles/infra/http/routes/vehicles.routes';
 import { Router } from 'express';
-
-import { vehicleModelsRoutes } from '../../../modules/vehicleModel/infra/http/routes/vehicleModelsRoutes';
-import { vehiclesRoutes } from '../../../modules/vehicles/infra/http/routes/vehicles.routes';
 
 const routes = Router();
 

@@ -1,5 +1,6 @@
-import { prisma } from '../../../../../config/prisma/prismaClient';
-import { Vehicle } from '../../../entities/Vehicle';
+import { prisma } from '@config/prisma/prismaClient';
+import { Vehicle } from '@modules/vehicles/entities/Vehicle';
+
 import { IVehicleRepository } from '../IVehicleRepository';
 
 class PrismaVehicleRepository implements IVehicleRepository {

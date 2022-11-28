@@ -1,7 +1,6 @@
+import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
-
-import AppError from '../../../../shared/errors/AppError';
-import { IVehicleRepository } from '../../infra/repositories/IVehicleRepository';
 
 @injectable()
 class DeleteVehicleUseCase {

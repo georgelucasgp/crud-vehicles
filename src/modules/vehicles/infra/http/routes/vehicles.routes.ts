@@ -1,9 +1,8 @@
+import { CreateVehicleController } from '@modules/vehicles/useCases/createVehicle/CreateVehicleController';
+import { DeleteVehicleController } from '@modules/vehicles/useCases/deleteVehicle/DeleteVehicleController';
+import { ShowVehicleController } from '@modules/vehicles/useCases/showVehicle/ShowVehicleController';
+import { UpdateVehicleController } from '@modules/vehicles/useCases/updateVehicle/UpdateVehicleController';
 import { Router } from 'express';
-
-import { CreateVehicleController } from '../../../useCases/createVehicle/CreateVehicleController';
-import { DeleteVehicleController } from '../../../useCases/deleteVehicle/DeleteVehicleController';
-import { ShowVehicleController } from '../../../useCases/showVehicle/ShowVehicleController';
-import { UpdateVehicleController } from '../../../useCases/updateVehicle/UpdateVehicleController';
 
 const vehiclesRoutes = Router();
 

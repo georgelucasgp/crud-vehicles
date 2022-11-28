@@ -1,4 +1,4 @@
-import { Vehicle } from '../../entities/Vehicle';
+import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 
 export interface IVehicleRepository {
   findById(id: string): Promise<Vehicle | null>;

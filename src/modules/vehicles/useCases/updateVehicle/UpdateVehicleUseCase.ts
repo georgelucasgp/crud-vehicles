@@ -1,9 +1,8 @@
+import { IUpdateVehicleRequestDTO } from '@modules/vehicles/dtos/IUpdateVehicleRequestDTO';
+import { Vehicle } from '@modules/vehicles/entities/Vehicle';
+import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
-
-import AppError from '../../../../shared/errors/AppError';
-import { Vehicle } from '../../entities/Vehicle';
-import { IVehicleRepository } from '../../infra/repositories/IVehicleRepository';
-import { IUpdateVehicleRequestDTO } from './../../dtos/IUpdateVehicleRequestDTO';
 
 @injectable()
 class UpdateVehicleUseCase {

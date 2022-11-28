@@ -1,6 +1,6 @@
+import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import cuid from 'cuid';
 
-import { Vehicle } from '../../../entities/Vehicle';
 import { IVehicleRepository } from '../IVehicleRepository';
 
 class VehicleRepositoryInMemory implements IVehicleRepository {

@@ -15,7 +15,7 @@
 //   it('should be able to update a vehicle', async () => {
 //     vehicleData = {
 //       license_plate: 'AAA-2222',
-//       chassis: '9BWZZZ377',
+//       chassis: 'ABCDEFG',
 //       renavam: '123456789',
 //       vehicles_model_id: '1',
 //     };
@@ -25,7 +25,7 @@
 //     vehicleData = {
 //       id: vehicle.id,
 //       license_plate: 'AAA-3333',
-//       chassis: '9BWZZZ377',
+//       chassis: 'ABCDEFG',
 //       renavam: '123456789',
 //       vehicles_model_id: '1',
 //     };
@@ -40,7 +40,7 @@
 //   it('should not be able to update a vehicle with license plate already exists', async () => {
 //     vehicleData = {
 //       license_plate: 'AAA-4444',
-//       chassis: '9BWZZZ377',
+//       chassis: 'ABCDEFG',
 //       renavam: '123456789',
 //       vehicles_model_id: '1',
 //     };
@@ -50,7 +50,7 @@
 //     vehicleData = {
 //       id: vehicle.id,
 //       license_plate: 'AAA-5555',
-//       chassis: '9BWZZZ377',
+//       chassis: 'ABCDEFG',
 //       renavam: '123456789',
 //       vehicles_model_id: '1',
 //     };
@@ -66,7 +66,7 @@
 //     vehicleData = {
 //       id: '1',
 //       license_plate: 'AAA-6666',
-//       chassis: '9BWZZZ377',
+//       chassis: 'ABCDEFG',
 //       renavam: '123456789',
 //       vehicles_model_id: '1',
 //     };
