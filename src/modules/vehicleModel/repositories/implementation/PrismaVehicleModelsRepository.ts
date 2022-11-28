@@ -2,7 +2,7 @@ import { prisma } from '../../../../config/prisma/prismaClient';
 import { VehicleModel } from '../../entities/VehicleModel';
 import { IVehicleModelsRepository } from '../IVehicleModelsRepository';
 
-class PrismaVehicleModelRepository implements IVehicleModelsRepository {
+class PrismaVehicleModelsRepository implements IVehicleModelsRepository {
   async findById(id: string): Promise<VehicleModel | null> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
@@ -66,4 +66,4 @@ class PrismaVehicleModelRepository implements IVehicleModelsRepository {
   }
 }
 
-export default PrismaVehicleModelRepository;
+export default PrismaVehicleModelsRepository;

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
+import { CreateVehicleModelController } from '../../../useCase/createVehicleModel/CreateVehicleModelController';
 import { DeleteVehicleModelController } from '../../../useCase/deleteVehicleModel/DeleteVehicleModelController';
 import { ShowVehicleModelController } from '../../../useCase/showVehicleModel/ShowVehicleModelController';
 import { UpdateVehicleModelController } from '../../../useCase/updateVehicleModel/UpdateVehicleModelController';
-import { CreateVehicleModelController } from './../../../useCase/createVehicleModel/CreateVehicleModelController';
 
 const vehicleModelsRoutes = Router();
 

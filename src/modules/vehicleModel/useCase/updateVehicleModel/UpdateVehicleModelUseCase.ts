@@ -8,7 +8,7 @@ import { IUpdateVehicleModelRequestDTO } from './../../dtos/IUpdateVehicleModelR
 @injectable()
 class UpdateVehicleModelUseCase {
   constructor(
-    @inject('PrismaVehicleModelRepository')
+    @inject('PrismaVehicleModelsRepository')
     private vehicleModelsRepository: IVehicleModelsRepository,
   ) {}
 

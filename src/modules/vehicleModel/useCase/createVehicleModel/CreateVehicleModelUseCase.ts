@@ -8,7 +8,7 @@ import { IVehicleModelsRepository } from './../../repositories/IVehicleModelsRep
 @injectable()
 class CreateVehicleModelUseCase {
   constructor(
-    @inject('PrismaVehicleModelRepository')
+    @inject('PrismaVehicleModelsRepository')
     private vehicleModelsRepository: IVehicleModelsRepository,
   ) {}
 
