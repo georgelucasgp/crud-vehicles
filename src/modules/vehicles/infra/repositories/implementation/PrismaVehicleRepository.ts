@@ -3,24 +3,24 @@ import { Vehicle } from '../../../entities/Vehicle';
 import { IVehicleRepository } from '../IVehicleRepository';
 
 class PrismaVehicleRepository implements IVehicleRepository {
-  async findById(id: string): Promise<boolean> {
+  async findById(id: string): Promise<Vehicle | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         id,
       },
     });
 
-    return !!vehicle;
+    return vehicle;
   }
 
-  async findByLicensePlate(license_plate: string): Promise<boolean> {
+  async findByLicensePlate(license_plate: string): Promise<Vehicle | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {
         license_plate,
       },
     });
 
-    return !!vehicle;
+    return vehicle;
   }
 
   async list(): Promise<Vehicle[]> {

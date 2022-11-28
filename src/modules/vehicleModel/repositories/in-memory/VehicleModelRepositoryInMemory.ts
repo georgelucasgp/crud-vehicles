@@ -1,26 +1,28 @@
 import cuid from 'cuid';
 
-import { VehicleModel } from '../../modules/vehicleModel/entities/VehicleModel';
-import { IVehiclesModelRepositories } from '../IVehiclesModelRepositories';
+import { VehicleModel } from '../../entities/VehicleModel';
+import { IVehicleModelsRepository } from '../IVehicleModelsRepository';
 
-class VehicleModelRepositoryInMemory implements IVehiclesModelRepositories {
+class VehicleModelRepositoryInMemory implements IVehicleModelsRepository {
   private vehiclesModel: VehicleModel[] = [];
 
-  async findById(id: string): Promise<boolean> {
-    const vehicleModel = this.vehiclesModel.some(
+  async findById(id: string): Promise<VehicleModel | null> {
+    const vehicleModel = this.vehiclesModel.find(
       (vehicleModel) => vehicleModel.id === id,
     );
+    if (!vehicleModel) return null;
     return vehicleModel;
   }
 
-  async findByModel(model: string): Promise<boolean> {
-    const vehicleModel = this.vehiclesModel.some(
+  async findByModel(model: string): Promise<VehicleModel | null> {
+    const vehicleModel = this.vehiclesModel.find(
       (vehicleModel) => vehicleModel.model === model,
     );
+    if (!vehicleModel) return null;
     return vehicleModel;
   }
 
-  async list(): Promise<VehicleModel[] | null> {
+  async list(): Promise<VehicleModel[]> {
     return this.vehiclesModel;
   }
 
@@ -32,20 +34,23 @@ class VehicleModelRepositoryInMemory implements IVehiclesModelRepositories {
     return result;
   }
 
-  async create(vehicleModel: VehicleModel): Promise<void> {
+  async create(vehicleModel: VehicleModel): Promise<VehicleModel> {
     Object.assign(vehicleModel, {
       id: cuid(),
     });
     this.vehiclesModel.push(vehicleModel);
+    return vehicleModel;
   }
-  async update(vehicleModel: VehicleModel): Promise<void> {
+  async update(vehicleModel: VehicleModel): Promise<VehicleModel> {
     const index = this.vehiclesModel.findIndex((v) => v.id === vehicleModel.id);
     this.vehiclesModel[index] = vehicleModel;
+    return vehicleModel;
   }
 
-  async delete(id: string): Promise<void> {
-    const index = this.vehiclesModel.findIndex((v) => v.id === id);
+  async delete(vehicleModel: VehicleModel): Promise<VehicleModel> {
+    const index = this.vehiclesModel.findIndex((v) => v.id === vehicleModel.id);
     this.vehiclesModel.splice(index, 1);
+    return vehicleModel;
   }
 }
 

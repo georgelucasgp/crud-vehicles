@@ -1,26 +1,34 @@
 import { Router } from 'express';
 
-import { VehicleModelController } from './../../../controllers/VehicleModelController';
+import { DeleteVehicleModelController } from '../../../useCase/deleteVehicleModel/DeleteVehicleModelController';
+import { ShowVehicleModelController } from '../../../useCase/showVehicleModel/ShowVehicleModelController';
+import { UpdateVehicleModelController } from '../../../useCase/updateVehicleModel/UpdateVehicleModelController';
+import { CreateVehicleModelController } from './../../../useCase/createVehicleModel/CreateVehicleModelController';
 
 const vehicleModelsRoutes = Router();
 
+const createVehicleModelController = new CreateVehicleModelController();
+const updateVehicleModelController = new UpdateVehicleModelController();
+const deleteVehicleModelController = new DeleteVehicleModelController();
+const showVehicleModelController = new ShowVehicleModelController();
+
 vehicleModelsRoutes.post('/vehicles-model', (request, response) =>
-  new VehicleModelController().store(request, response),
+  createVehicleModelController.handle(request, response),
 );
 
 vehicleModelsRoutes.get('/vehicles-model/:id/show', (request, response) =>
-  new VehicleModelController().show(request, response),
+  showVehicleModelController.show(request, response),
 );
 
 vehicleModelsRoutes.get('/vehicles-model', (request, response) =>
-  new VehicleModelController().list(request, response),
+  showVehicleModelController.list(request, response),
 );
 
 vehicleModelsRoutes.put('/vehicles-model/:id', (request, response) =>
-  new VehicleModelController().update(request, response),
+  updateVehicleModelController.handle(request, response),
 );
 
 vehicleModelsRoutes.delete('/vehicles-model/:id', (request, response) =>
-  new VehicleModelController().delete(request, response),
+  deleteVehicleModelController.handle(request, response),
 );
 export { vehicleModelsRoutes };

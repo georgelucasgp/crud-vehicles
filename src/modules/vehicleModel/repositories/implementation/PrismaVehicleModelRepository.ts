@@ -1,26 +1,26 @@
-import { prisma } from '../../database/prismaClient';
-import { VehicleModel } from '../../modules/vehicleModel/entities/VehicleModel';
-import { IVehiclesModelRepositories } from '../IVehiclesModelRepositories';
+import { prisma } from '../../../../config/prisma/prismaClient';
+import { VehicleModel } from '../../entities/VehicleModel';
+import { IVehicleModelsRepository } from '../IVehicleModelsRepository';
 
-class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
-  async findById(id: string): Promise<boolean> {
+class PrismaVehicleModelRepository implements IVehicleModelsRepository {
+  async findById(id: string): Promise<VehicleModel | null> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
         id,
       },
     });
 
-    return !!vehicleModel;
+    return vehicleModel;
   }
 
-  async findByModel(model: string): Promise<boolean> {
+  async findByModel(model: string): Promise<VehicleModel | null> {
     const vehicleModel = await prisma.vehicleModel.findUnique({
       where: {
         model,
       },
     });
 
-    return !!vehicleModel;
+    return vehicleModel;
   }
 
   async list(): Promise<VehicleModel[]> {
@@ -39,35 +39,30 @@ class PrismaVehicleModelRepository implements IVehiclesModelRepositories {
     return vehicleModel;
   }
 
-  async create({ model, brand, model_year }: VehicleModel): Promise<void> {
-    await prisma.vehicleModel.create({
-      data: {
-        model,
-        brand,
-        model_year,
-      },
+  async create(data: VehicleModel): Promise<VehicleModel> {
+    const vehicle = await prisma.vehicleModel.create({
+      data,
     });
+    return vehicle;
   }
 
-  async update({ id, model, brand, model_year }: VehicleModel): Promise<void> {
-    await prisma.vehicleModel.update({
+  async update(data: VehicleModel): Promise<VehicleModel> {
+    const vehicle = await prisma.vehicleModel.update({
       where: {
-        id,
+        id: data.id,
       },
-      data: {
-        model,
-        brand,
-        model_year,
-      },
+      data,
     });
+    return vehicle;
   }
 
-  async delete(id: string): Promise<void> {
-    await prisma.vehicleModel.delete({
+  async delete({ id }: VehicleModel): Promise<VehicleModel> {
+    const vehicle = await prisma.vehicleModel.delete({
       where: {
         id,
       },
     });
+    return vehicle;
   }
 }
 

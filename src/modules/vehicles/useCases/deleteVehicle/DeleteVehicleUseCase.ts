@@ -17,7 +17,9 @@ class DeleteVehicleUseCase {
       throw new AppError('Vehicle does not exist', 400);
     }
 
-    await this.vehicleRepository.delete(id);
+    await this.vehicleRepository.delete(vehicleAlreadyExists);
+
+    return vehicleAlreadyExists;
   }
 }
 

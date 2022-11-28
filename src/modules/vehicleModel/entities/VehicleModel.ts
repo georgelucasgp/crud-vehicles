@@ -7,6 +7,10 @@ class VehicleModel {
   constructor(props: VehicleModel) {
     return Object.assign(this, props);
   }
+
+  static create(props: VehicleModel) {
+    return new VehicleModel(props);
+  }
 }
 
 export { VehicleModel };

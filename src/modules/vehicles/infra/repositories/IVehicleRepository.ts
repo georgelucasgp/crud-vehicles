@@ -1,8 +1,8 @@
 import { Vehicle } from '../../entities/Vehicle';
 
 export interface IVehicleRepository {
-  findById(id: string): Promise<boolean>;
-  findByLicensePlate(license_plate: string): Promise<boolean>;
+  findById(id: string): Promise<Vehicle | null>;
+  findByLicensePlate(license_plate: string): Promise<Vehicle | null>;
   list(): Promise<Vehicle[]>;
   show(id: string): Promise<Vehicle | null>;
   create(vehicle: Vehicle): Promise<Vehicle>;

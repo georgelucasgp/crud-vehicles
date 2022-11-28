@@ -4,17 +4,19 @@ import { Vehicle } from '../../../entities/Vehicle';
 import { IVehicleRepository } from '../IVehicleRepository';
 
 class VehicleRepositoryInMemory implements IVehicleRepository {
-  private vehicles: Vehicle[] = [];
+  vehicles: Vehicle[] = [];
 
-  async findById(id: string): Promise<boolean> {
-    const vehicle = this.vehicles.some((vehicle) => vehicle.id === id);
+  async findById(id: string): Promise<Vehicle | null> {
+    const vehicle = this.vehicles.find((vehicle) => vehicle.id === id);
+    if (!vehicle) return null;
     return vehicle;
   }
 
-  async findByLicensePlate(license_plate: string): Promise<boolean> {
-    const vehicle = this.vehicles.some(
+  async findByLicensePlate(license_plate: string): Promise<Vehicle | null> {
+    const vehicle = this.vehicles.find(
       (vehicle) => vehicle.license_plate === license_plate,
     );
+    if (!vehicle) return null;
     return vehicle;
   }
 
@@ -24,8 +26,8 @@ class VehicleRepositoryInMemory implements IVehicleRepository {
 
   async show(id: string): Promise<Vehicle | null> {
     const vehicle = this.vehicles.find((vehicle) => vehicle.id === id);
-    const result = vehicle == undefined ? null : vehicle;
-    return result;
+    if (!vehicle) return null;
+    return vehicle;
   }
 
   async create(vehicle: Vehicle): Promise<Vehicle> {
