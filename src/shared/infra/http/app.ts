@@ -1,10 +1,11 @@
+import AppError from '@shared/errors/AppError';
 import 'reflect-metadata';
 import '../container';
 import 'express-async-errors';
 import express, { Request, Response, NextFunction } from 'express';
 
-import AppError from '../errors/AppError';
 import { routes } from './routes';
+
 import 'dotenv/config';
 
 const app = express();

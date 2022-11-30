@@ -28,6 +28,8 @@ class UpdateVehicleUseCase {
 
     const vehicle = Vehicle.create(data);
     await this.vehicleRepository.update(vehicle);
+
+    return vehicle;
   }
 }
 
