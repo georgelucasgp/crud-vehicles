@@ -21,6 +21,8 @@ class CreateVehicleModelUseCase {
 
     const vehicleModel = VehicleModel.create(data);
     await this.vehicleModelsRepository.create(vehicleModel);
+
+    return vehicleModel;
   }
 }
 

@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2017",
-    "lib": ["ESNext"],
-
+    "target": "ES5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
@@ -16,7 +14,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "removeComments": true,
     "esModuleInterop": true,
     "strict": true,

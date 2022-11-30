@@ -10,14 +10,14 @@ export class CreateVehicleController {
     try {
       const createVehicleUseCase = container.resolve(CreateVehicleUseCase);
 
-      await createVehicleUseCase.execute({
+      const vehicle = await createVehicleUseCase.execute({
         license_plate,
         chassis,
         renavam,
         vehicles_model_id,
       });
 
-      return response.status(201).json();
+      return response.status(201).json(vehicle);
     } catch (error) {
       return response.status(400).json({ message: error });
     }

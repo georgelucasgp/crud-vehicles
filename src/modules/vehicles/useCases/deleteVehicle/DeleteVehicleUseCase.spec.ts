@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 describe('Delete Vehicle Use Case', () => {
   vehicleData = {
-    license_plate: 'AAA-5555',
+    license_plate: 'AAA-4444',
     chassis: 'ABCDEFG',
     renavam: '123456789',
     vehicles_model_id: '1',
@@ -29,7 +29,7 @@ describe('Delete Vehicle Use Case', () => {
       vehicle.id as string,
     );
 
-    expect(vehicleShow).toBeUndefined();
+    expect(vehicleShow).toBeNull();
   });
 
   it('should not be able to delete a vehicle with a id that does not exists', async () => {
