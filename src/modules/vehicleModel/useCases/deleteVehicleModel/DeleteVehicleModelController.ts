@@ -8,13 +8,11 @@ export class DeleteVehicleModelController {
     const { id } = request.params;
 
     try {
-      const deleteVehicleModelUseCase = container.resolve(
-        DeleteVehicleModelUseCase,
-      );
+      const deleteVehicleModelUseCase = container.resolve(DeleteVehicleModelUseCase);
 
-      await deleteVehicleModelUseCase.execute(id);
+      const vehicleModel = await deleteVehicleModelUseCase.execute(id);
 
-      return response.status(200).json();
+      return response.status(200).json(vehicleModel);
     } catch (error) {
       return response.status(400).json({ message: error });
     }

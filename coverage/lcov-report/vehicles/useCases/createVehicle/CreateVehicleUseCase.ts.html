@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">48.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>14/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">48.27% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>14/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,54 +99,54 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICreateVehicleRequestDTO } from '@modules/vehicles/dtos/ICreateVehicleRequestDTO';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 &nbsp;
 @injectable()
 class CreateVehicleUseCase {
-  constructor(
-    @inject('PrismaVehicleRepository')
-    private vehicleRepository: IVehicleRepository,
-  ) {}
+<span class="fstat-no" title="function not covered" >  constructor(</span>
+<span class="cstat-no" title="statement not covered" >    @inject('PrismaVehicleRepository')</span>
+<span class="cstat-no" title="statement not covered" >    private vehicleRepository: IVehicleRepository,</span>
+<span class="cstat-no" title="statement not covered" >  ) {}</span>
 &nbsp;
-  async execute(data: ICreateVehicleRequestDTO) {
-    const vehicleAlreadyExists =
-      await this.vehicleRepository.findByLicensePlate(data.license_plate);
-&nbsp;
-    if (vehicleAlreadyExists) {
-      throw new AppError('Vehicle already Exists', 400);
-    }
-&nbsp;
-    const vehicleCreate = Vehicle.create(data);
-&nbsp;
-    const vehicle = await this.vehicleRepository.create(vehicleCreate);
-    return vehicle;
-  }
+<span class="fstat-no" title="function not covered" >  async execute(data: ICreateVehicleRequestDTO) {</span>
+<span class="cstat-no" title="statement not covered" >    const vehicleAlreadyExists =</span>
+<span class="cstat-no" title="statement not covered" >      await this.vehicleRepository.findByLicensePlate(data.license_plate);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (vehicleAlreadyExists) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError('Vehicle already Exists', 400);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const vehicleCreate = Vehicle.create(data);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const vehicle = await this.vehicleRepository.create(vehicleCreate);</span>
+<span class="cstat-no" title="statement not covered" >    return vehicle;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }
 &nbsp;
 export { CreateVehicleUseCase };
@@ -157,7 +157,7 @@ export { CreateVehicleUseCase };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-30T17:10:27.463Z
+                at 2022-12-01T22:59:40.956Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

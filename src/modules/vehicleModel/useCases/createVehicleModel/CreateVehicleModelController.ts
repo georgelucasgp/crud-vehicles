@@ -8,17 +8,15 @@ export class CreateVehicleModelController {
     const { model, brand, model_year } = request.body;
 
     try {
-      const createVehicleModelUseCase = container.resolve(
-        CreateVehicleModelUseCase,
-      );
+      const createVehicleModelUseCase = container.resolve(CreateVehicleModelUseCase);
 
-      await createVehicleModelUseCase.execute({
+      const vehicleModel = await createVehicleModelUseCase.execute({
         model,
         brand,
         model_year,
       });
 
-      return response.status(201).json();
+      return response.status(201).json(vehicleModel);
     } catch (error) {
       return response.status(400).json({ message: error });
     }

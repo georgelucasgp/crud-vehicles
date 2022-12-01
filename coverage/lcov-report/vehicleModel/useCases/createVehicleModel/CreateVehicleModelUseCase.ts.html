@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.1% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.1% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -99,32 +99,32 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICreateVehicleModelRequestDTO } from '@modules/vehicleModel/dtos/ICreateVehicleModelRequestDTO';
 import { VehicleModel } from '@modules/vehicleModel/entities/VehicleModel';
 import { IVehicleModelsRepository } from '@modules/vehicleModel/repositories/IVehicleModelsRepository';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 &nbsp;
 @injectable()
@@ -135,15 +135,15 @@ class CreateVehicleModelUseCase {
   ) {}
 &nbsp;
   async execute(data: ICreateVehicleModelRequestDTO) {
-    const vehicleModelAlreadyExists =
-      await this.vehicleModelsRepository.findByModel(data.model);
+    const vehicleModelAlreadyExists = await this.vehicleModelsRepository.findByModel(data.model);
 &nbsp;
-    if (vehicleModelAlreadyExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError('Vehicle Already Exists', 400);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    if (vehicleModelAlreadyExists) {
+      throw new AppError('Vehicle Model Already Exists', 400);
+    }
 &nbsp;
-    const vehicleModel = VehicleModel.create(data);
-    await this.vehicleModelsRepository.create(vehicleModel);
+    const vehicleModelCreate = VehicleModel.create(data);
+&nbsp;
+    const vehicleModel = await this.vehicleModelsRepository.create(vehicleModelCreate);
 &nbsp;
     return vehicleModel;
   }
@@ -157,7 +157,7 @@ export default CreateVehicleModelUseCase;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-30T17:10:27.463Z
+                at 2022-12-01T22:59:40.956Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

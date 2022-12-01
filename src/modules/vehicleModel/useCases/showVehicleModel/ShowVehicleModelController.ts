@@ -8,9 +8,7 @@ export class ShowVehicleModelController {
     const { id } = request.params;
 
     try {
-      const showVehicleModelUseCase = container.resolve(
-        ShowVehicleModelUseCase,
-      );
+      const showVehicleModelUseCase = container.resolve(ShowVehicleModelUseCase);
 
       const vehicleModel = await showVehicleModelUseCase.show(id);
       return response.status(200).json(vehicleModel);
@@ -21,9 +19,7 @@ export class ShowVehicleModelController {
 
   async list(request: Request, response: Response) {
     try {
-      const showVehicleModelUseCase = container.resolve(
-        ShowVehicleModelUseCase,
-      );
+      const showVehicleModelUseCase = container.resolve(ShowVehicleModelUseCase);
 
       const vehicleModel = await showVehicleModelUseCase.list();
 

@@ -2,7 +2,7 @@ const NodeEnvironment = require('jest-environment-node').default;
 const cuid = require('cuid');
 const { execSync } = require('child_process');
 const { resolve } = require('path');
-
+const { Client } = require('pg');
 const prismaCli = resolve(__dirname, '..', 'node_modules', '.bin', 'prisma');
 
 require('dotenv').config({
@@ -23,8 +23,13 @@ class CustomEnvironment extends NodeEnvironment {
     execSync(`${prismaCli} migrate dev`);
   }
 
-  teardown() {
-    // Teardown the database
+  async teardown() {
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+    });
+    await client.connect();
+    await client.query(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
+    await client.end();
   }
 }
 

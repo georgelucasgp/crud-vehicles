@@ -1,5 +1,5 @@
 import { IVehicleModelsRepository } from '@modules/vehicleModel/repositories/IVehicleModelsRepository';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
@@ -10,8 +10,7 @@ class ShowVehicleModelUseCase {
   ) {}
 
   async show(id: string) {
-    const vehicleModelAlreadyExists =
-      await this.vehicleModelRepository.findById(id);
+    const vehicleModelAlreadyExists = await this.vehicleModelRepository.findById(id);
 
     if (!vehicleModelAlreadyExists) {
       throw new AppError('Vehicle does not exist', 400);

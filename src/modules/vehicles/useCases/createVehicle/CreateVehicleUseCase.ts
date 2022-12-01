@@ -1,7 +1,7 @@
 import { ICreateVehicleRequestDTO } from '@modules/vehicles/dtos/ICreateVehicleRequestDTO';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
 @injectable()

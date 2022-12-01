@@ -9,18 +9,16 @@ export class UpdateVehicleModelController {
     const { model, brand, model_year } = request.body;
 
     try {
-      const updateVehicleModelUseCase = container.resolve(
-        UpdateVehicleModelUseCase,
-      );
+      const updateVehicleModelUseCase = container.resolve(UpdateVehicleModelUseCase);
 
-      await updateVehicleModelUseCase.execute({
+      const vehicleModel = await updateVehicleModelUseCase.execute({
         id,
         model,
         brand,
         model_year,
       });
 
-      return response.status(200).json();
+      return response.status(200).json(vehicleModel);
     } catch (error) {
       return response.status(400).json({ message: error });
     }

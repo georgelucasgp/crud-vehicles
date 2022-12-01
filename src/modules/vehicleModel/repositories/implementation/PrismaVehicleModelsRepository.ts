@@ -44,6 +44,7 @@ class PrismaVehicleModelsRepository implements IVehicleModelsRepository {
     const vehicle = await prisma.vehicleModel.create({
       data,
     });
+
     return vehicle;
   }
 

@@ -1,6 +1,6 @@
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import { VehicleRepositoryInMemory } from '@modules/vehicles/infra/repositories/in-memory/VehicleRepositoryInMemory';
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 import { DeleteVehicleUseCase } from './DeleteVehicleUseCase';
 

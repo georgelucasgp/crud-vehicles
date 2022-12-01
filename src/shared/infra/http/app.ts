@@ -1,4 +1,4 @@
-import AppError from '@shared/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import 'reflect-metadata';
 import '../../container';
 import 'express-async-errors';
