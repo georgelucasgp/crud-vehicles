@@ -1,12 +1,15 @@
 import PrismaVehicleModelsRepository from '@modules/vehicleModel/repositories/implementation/PrismaVehicleModelsRepository';
-import { IVehicleModelsRepository } from '@modules/vehicleModel/repositories/IVehicleModelsRepository';
+import { VehicleModelsRepositoryInterface } from '@modules/vehicleModel/repositories/VehicleModelsRepositoryInterface';
 import PrismaVehicleRepository from '@modules/vehicles/infra/repositories/implementation/PrismaVehicleRepository';
-import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import { VehicleRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleRepositoryInterface';
 import { container } from 'tsyringe';
 
-container.registerSingleton<IVehicleRepository>('PrismaVehicleRepository', PrismaVehicleRepository);
+container.registerSingleton<VehicleRepositoryInterface>(
+  'PrismaVehicleRepository',
+  PrismaVehicleRepository,
+);
 
-container.registerSingleton<IVehicleModelsRepository>(
+container.registerSingleton<VehicleModelsRepositoryInterface>(
   'PrismaVehicleModelsRepository',
   PrismaVehicleModelsRepository,
 );

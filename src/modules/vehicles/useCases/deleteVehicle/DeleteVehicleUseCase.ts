@@ -1,4 +1,4 @@
-import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import { VehicleRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleRepositoryInterface';
 import { AppError } from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
@@ -6,7 +6,7 @@ import { injectable, inject } from 'tsyringe';
 class DeleteVehicleUseCase {
   constructor(
     @inject('PrismaVehicleRepository')
-    private vehicleRepository: IVehicleRepository,
+    private vehicleRepository: VehicleRepositoryInterface,
   ) {}
 
   async execute(id: string) {

@@ -1,6 +1,6 @@
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 
-export interface IVehicleRepository {
+export interface VehicleRepositoryInterface {
   findById(id: string): Promise<Vehicle | null>;
   findByLicensePlate(license_plate: string): Promise<Vehicle | null>;
   list(): Promise<Vehicle[]>;

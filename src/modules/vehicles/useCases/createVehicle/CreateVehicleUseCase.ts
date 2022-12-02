@@ -1,7 +1,7 @@
-import { IVehicleModelsRepository } from '@modules/vehicleModel/repositories/IVehicleModelsRepository';
+import { VehicleModelsRepositoryInterface } from '@modules/vehicleModel/repositories/VehicleModelsRepositoryInterface';
 import { ICreateVehicleRequestDTO } from '@modules/vehicles/dtos/ICreateVehicleRequestDTO';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
-import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import { VehicleRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleRepositoryInterface';
 import { AppError } from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
@@ -9,9 +9,9 @@ import { injectable, inject } from 'tsyringe';
 class CreateVehicleUseCase {
   constructor(
     @inject('PrismaVehicleRepository')
-    private vehicleRepository: IVehicleRepository,
+    private vehicleRepository: VehicleRepositoryInterface,
     @inject('PrismaVehicleModelsRepository')
-    private vehicleModelsRepository: IVehicleModelsRepository,
+    private vehicleModelsRepository: VehicleModelsRepositoryInterface,
   ) {}
 
   async execute(data: ICreateVehicleRequestDTO) {

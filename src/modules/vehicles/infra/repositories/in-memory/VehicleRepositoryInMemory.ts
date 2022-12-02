@@ -1,9 +1,9 @@
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import cuid from 'cuid';
 
-import { IVehicleRepository } from '../IVehicleRepository';
+import { VehicleRepositoryInterface } from '../VehicleRepositoryInterface';
 
-class VehicleRepositoryInMemory implements IVehicleRepository {
+class VehicleRepositoryInMemory implements VehicleRepositoryInterface {
   vehicles: Vehicle[] = [];
 
   async findById(id: string): Promise<Vehicle | null> {

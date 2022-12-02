@@ -1,9 +1,9 @@
 import { prisma } from '@config/prisma/prismaClient';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 
-import { IVehicleRepository } from '../IVehicleRepository';
+import { VehicleRepositoryInterface } from '../VehicleRepositoryInterface';
 
-class PrismaVehicleRepository implements IVehicleRepository {
+class PrismaVehicleRepository implements VehicleRepositoryInterface {
   async findById(id: string): Promise<Vehicle | null> {
     const vehicle = await prisma.vehicle.findUnique({
       where: {

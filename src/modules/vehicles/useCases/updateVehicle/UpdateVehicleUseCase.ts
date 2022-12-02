@@ -1,6 +1,6 @@
 import { IUpdateVehicleRequestDTO } from '@modules/vehicles/dtos/IUpdateVehicleRequestDTO';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
-import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
+import { VehicleRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleRepositoryInterface';
 import { AppError } from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
@@ -8,7 +8,7 @@ import { injectable, inject } from 'tsyringe';
 class UpdateVehicleUseCase {
   constructor(
     @inject('PrismaVehicleRepository')
-    private vehicleRepository: IVehicleRepository,
+    private vehicleRepository: VehicleRepositoryInterface,
   ) {}
 
   async execute(data: IUpdateVehicleRequestDTO) {
@@ -19,8 +19,9 @@ class UpdateVehicleUseCase {
       throw new AppError('Vehicle does not exist', 400);
     }
 
-    const licensePlateAlreadyExists =
-      await this.vehicleRepository.findByLicensePlate(data.license_plate);
+    const licensePlateAlreadyExists = await this.vehicleRepository.findByLicensePlate(
+      data.license_plate,
+    );
 
     if (licensePlateAlreadyExists) {
       throw new AppError('License Plate Vehicle already Exists', 400);

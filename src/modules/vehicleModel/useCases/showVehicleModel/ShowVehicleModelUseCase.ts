@@ -1,4 +1,4 @@
-import { IVehicleModelsRepository } from '@modules/vehicleModel/repositories/IVehicleModelsRepository';
+import { VehicleModelsRepositoryInterface } from '@modules/vehicleModel/repositories/VehicleModelsRepositoryInterface';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
@@ -6,7 +6,7 @@ import { inject, injectable } from 'tsyringe';
 class ShowVehicleModelUseCase {
   constructor(
     @inject('PrismaVehicleModelsRepository')
-    private vehicleModelRepository: IVehicleModelsRepository,
+    private vehicleModelRepository: VehicleModelsRepositoryInterface,
   ) {}
 
   async show(id: string) {
