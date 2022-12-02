@@ -1,6 +1,6 @@
-import PrismaVehicleModelsRepository from '@modules/vehicleModel/repositories/implementation/PrismaVehicleModelsRepository';
-import { VehicleModelsRepositoryInterface } from '@modules/vehicleModel/repositories/VehicleModelsRepositoryInterface';
+import PrismaVehicleModelsRepository from '@modules/vehicles/infra/repositories/implementation/PrismaVehicleModelsRepository';
 import PrismaVehicleRepository from '@modules/vehicles/infra/repositories/implementation/PrismaVehicleRepository';
+import { VehicleModelsRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleModelsRepositoryInterface';
 import { VehicleRepositoryInterface } from '@modules/vehicles/infra/repositories/VehicleRepositoryInterface';
 import { container } from 'tsyringe';
 
