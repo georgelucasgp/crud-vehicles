@@ -12,8 +12,6 @@ describe('Show Vehicle Model Controller', () => {
       model_year: 2018,
     });
 
-    console.log(vehicleModel.body);
-
     const response = await request(app).get(`/vehicle-models/${vehicleModel.body.id}/show`);
 
     expect(response.status).toBe(200);

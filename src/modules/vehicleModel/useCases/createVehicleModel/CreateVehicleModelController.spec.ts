@@ -17,15 +17,9 @@ describe('Create Vehicle Model Controller', () => {
   });
 
   it('should not be able to create a new vehicle model with name already exists', async () => {
-    await request(app).post('/vehicle-models').send({
-      model: 'Palio',
-      brand: 'Fiat',
-      model_year: 2018,
-    });
-
     const response = await request(app).post('/vehicle-models').send({
-      model: 'Palio',
-      brand: 'Fiat',
+      model: 'Gol',
+      brand: 'Volkswagen',
       model_year: 2018,
     });
 

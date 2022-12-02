@@ -8,20 +8,16 @@ export class UpdateVehicleController {
     const { id } = request.params;
     const { license_plate, chassis, renavam, vehicles_model_id } = request.body;
 
-    try {
-      const updateVehicleUseCase = container.resolve(UpdateVehicleUseCase);
+    const updateVehicleUseCase = container.resolve(UpdateVehicleUseCase);
 
-      await updateVehicleUseCase.execute({
-        id,
-        license_plate,
-        chassis,
-        renavam,
-        vehicles_model_id,
-      });
+    const vehicle = await updateVehicleUseCase.execute({
+      id,
+      license_plate,
+      chassis,
+      renavam,
+      vehicles_model_id,
+    });
 
-      return response.status(200).json();
-    } catch (error) {
-      return response.status(400).json({ message: error });
-    }
+    return response.status(200).json(vehicle);
   }
 }

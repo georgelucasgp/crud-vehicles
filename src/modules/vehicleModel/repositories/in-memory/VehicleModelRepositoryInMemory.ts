@@ -7,17 +7,13 @@ class VehicleModelRepositoryInMemory implements IVehicleModelsRepository {
   private vehiclesModel: VehicleModel[] = [];
 
   async findById(id: string): Promise<VehicleModel | null> {
-    const vehicleModel = this.vehiclesModel.find(
-      (vehicleModel) => vehicleModel.id === id,
-    );
+    const vehicleModel = this.vehiclesModel.find((vehicleModel) => vehicleModel.id === id);
     if (!vehicleModel) return null;
     return vehicleModel;
   }
 
   async findByModel(model: string): Promise<VehicleModel | null> {
-    const vehicleModel = this.vehiclesModel.find(
-      (vehicleModel) => vehicleModel.model === model,
-    );
+    const vehicleModel = this.vehiclesModel.find((vehicleModel) => vehicleModel.model === model);
     if (!vehicleModel) return null;
     return vehicleModel;
   }
@@ -27,9 +23,7 @@ class VehicleModelRepositoryInMemory implements IVehicleModelsRepository {
   }
 
   async show(id: string): Promise<VehicleModel | null> {
-    const vehicleModel = this.vehiclesModel.find(
-      (vehicleModel) => vehicleModel.id === id,
-    );
+    const vehicleModel = this.vehiclesModel.find((vehicleModel) => vehicleModel.id === id);
     const result = vehicleModel == undefined ? null : vehicleModel;
     return result;
   }

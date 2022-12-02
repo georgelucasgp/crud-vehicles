@@ -2,7 +2,7 @@ import { VehicleModel } from '@modules/vehicleModel/entities/VehicleModel';
 import { VehicleModelRepositoryInMemory } from '@modules/vehicleModel/repositories/in-memory/VehicleModelRepositoryInMemory';
 import { AppError } from '@shared/errors/AppError';
 
-import DeleteVehicleModelUseCase from './DeleteVehicleModelUseCase';
+import { DeleteVehicleModelUseCase } from './DeleteVehicleModelUseCase';
 
 let vehicleModelRepositoryInMemory: VehicleModelRepositoryInMemory;
 let deleteVehicleModelUseCase: DeleteVehicleModelUseCase;

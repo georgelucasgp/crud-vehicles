@@ -22,4 +22,4 @@ class DeleteVehicleModelUseCase {
   }
 }
 
-export default DeleteVehicleModelUseCase;
+export { DeleteVehicleModelUseCase };

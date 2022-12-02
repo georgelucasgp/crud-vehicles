@@ -1,3 +1,5 @@
+import { VehicleModel } from '@modules/vehicleModel/entities/VehicleModel';
+import { VehicleModelRepositoryInMemory } from '@modules/vehicleModel/repositories/in-memory/VehicleModelRepositoryInMemory';
 import { Vehicle } from '@modules/vehicles/entities/Vehicle';
 import { VehicleRepositoryInMemory } from '@modules/vehicles/infra/repositories/in-memory/VehicleRepositoryInMemory';
 import { AppError } from '@shared/errors/AppError';
@@ -5,16 +7,27 @@ import { AppError } from '@shared/errors/AppError';
 import { CreateVehicleUseCase } from './CreateVehicleUseCase';
 
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
+let vehicleModelsRepositoryInMemory: VehicleModelRepositoryInMemory;
 let createVehicleUseCase: CreateVehicleUseCase;
 
 let vehicleData: Vehicle;
+let vehicleModelData: VehicleModel;
 
 beforeAll(() => {
   vehicleRepositoryInMemory = new VehicleRepositoryInMemory();
-  createVehicleUseCase = new CreateVehicleUseCase(vehicleRepositoryInMemory);
+  vehicleModelsRepositoryInMemory = new VehicleModelRepositoryInMemory();
+  createVehicleUseCase = new CreateVehicleUseCase(
+    vehicleRepositoryInMemory,
+    vehicleModelsRepositoryInMemory,
+  );
 });
 
 describe('Create Vehicle Use Case', () => {
+  vehicleModelData = {
+    model: 'Fusca',
+    brand: 'Volkswagen',
+    model_year: 1969,
+  };
   vehicleData = {
     license_plate: 'AAA-0000',
     chassis: 'ABCDEFG',
@@ -22,7 +35,11 @@ describe('Create Vehicle Use Case', () => {
     vehicles_model_id: '1',
   };
   it('should be able to create a new vehicle', async () => {
-    const vehicle = await createVehicleUseCase.execute(vehicleData);
+    const vehicleModel = await vehicleModelsRepositoryInMemory.create(vehicleModelData);
+    const vehicle = await createVehicleUseCase.execute({
+      ...vehicleData,
+      vehicles_model_id: vehicleModel.id as string,
+    });
 
     expect(vehicle).toHaveProperty('id');
   });

@@ -25,9 +25,7 @@ describe('Delete Vehicle Use Case', () => {
 
     await deleteVehicleUseCase.execute(vehicle.id as string);
 
-    const vehicleShow = await vehicleRepositoryInMemory.findById(
-      vehicle.id as string,
-    );
+    const vehicleShow = await vehicleRepositoryInMemory.findById(vehicle.id as string);
 
     expect(vehicleShow).toBeNull();
   });

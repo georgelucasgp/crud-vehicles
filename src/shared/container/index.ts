@@ -4,10 +4,7 @@ import PrismaVehicleRepository from '@modules/vehicles/infra/repositories/implem
 import { IVehicleRepository } from '@modules/vehicles/infra/repositories/IVehicleRepository';
 import { container } from 'tsyringe';
 
-container.registerSingleton<IVehicleRepository>(
-  'PrismaVehicleRepository',
-  PrismaVehicleRepository,
-);
+container.registerSingleton<IVehicleRepository>('PrismaVehicleRepository', PrismaVehicleRepository);
 
 container.registerSingleton<IVehicleModelsRepository>(
   'PrismaVehicleModelsRepository',

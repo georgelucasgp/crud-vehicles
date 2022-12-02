@@ -13,9 +13,7 @@ class VehicleRepositoryInMemory implements IVehicleRepository {
   }
 
   async findByLicensePlate(license_plate: string): Promise<Vehicle | null> {
-    const vehicle = this.vehicles.find(
-      (vehicle) => vehicle.license_plate === license_plate,
-    );
+    const vehicle = this.vehicles.find((vehicle) => vehicle.license_plate === license_plate);
     if (!vehicle) return null;
     return vehicle;
   }

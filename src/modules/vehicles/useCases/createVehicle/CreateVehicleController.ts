@@ -7,19 +7,15 @@ export class CreateVehicleController {
   async handle(request: Request, response: Response) {
     const { license_plate, chassis, renavam, vehicles_model_id } = request.body;
 
-    try {
-      const createVehicleUseCase = container.resolve(CreateVehicleUseCase);
+    const createVehicleUseCase = container.resolve(CreateVehicleUseCase);
 
-      const vehicle = await createVehicleUseCase.execute({
-        license_plate,
-        chassis,
-        renavam,
-        vehicles_model_id,
-      });
+    const vehicle = await createVehicleUseCase.execute({
+      license_plate,
+      chassis,
+      renavam,
+      vehicles_model_id,
+    });
 
-      return response.status(201).json(vehicle);
-    } catch (error) {
-      return response.status(400).json({ message: error });
-    }
+    return response.status(201).json(vehicle);
   }
 }
