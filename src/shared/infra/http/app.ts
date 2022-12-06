@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import { AppError } from '@shared/errors/AppError';
 import 'reflect-metadata';
 import '../../container';
