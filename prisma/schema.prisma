@@ -7,26 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
-}
-
 model Vehicle {
-  id            String   @id
+  id            String   @id @default(cuid())
   license_plate String   @unique
   chassis       String
   renavam       String
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 
-  vehicles_model    VehicleModel @relation(fields: [vehicles_model_id], references: [id])
+  vehicles_model    VehicleModel @relation(fields: [vehicles_model_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   vehicles_model_id String
 
   @@map("vehicle")
 }
 
 model VehicleModel {
-  id         String    @id
+  id         String    @id @default(cuid())
   model      String    @unique
   brand      String
   model_year Int
