@@ -13,15 +13,9 @@ class CreateVehicleModelUseCase {
 
   async execute(data: ICreateVehicleModelRequestDTO) {
     const vehicleModelAlreadyExists = await this.vehicleModelsRepository.findByModel(data.model);
-
-    if (vehicleModelAlreadyExists) {
-      throw new AppError('Vehicle Model Already Exists', 400);
-    }
-
+    if (vehicleModelAlreadyExists) throw new AppError('Vehicle Model Already Exists', 400);
     const vehicleModelCreate = VehicleModel.create(data);
-
     const vehicleModel = await this.vehicleModelsRepository.create(vehicleModelCreate);
-
     return vehicleModel;
   }
 }

@@ -13,11 +13,7 @@ class UpdateVehicleModelUseCase {
 
   async execute(data: IUpdateVehicleModelRequestDTO) {
     const vehicleModelAlreadyExists = await this.vehicleModelsRepository.findById(data.id);
-
-    if (!vehicleModelAlreadyExists) {
-      throw new AppError('Vehicle does not exist', 400);
-    }
-
+    if (!vehicleModelAlreadyExists) throw new AppError('Vehicle does not exist', 400);
     const vehicleModel = VehicleModel.create(data);
     await this.vehicleModelsRepository.update(vehicleModel);
     return vehicleModel;

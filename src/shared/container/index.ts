@@ -8,7 +8,6 @@ container.registerSingleton<VehicleRepositoryInterface>(
   'PrismaVehicleRepository',
   PrismaVehicleRepository,
 );
-
 container.registerSingleton<VehicleModelsRepositoryInterface>(
   'PrismaVehicleModelsRepository',
   PrismaVehicleModelsRepository,

@@ -5,7 +5,6 @@ import { AppError } from '@shared/errors/AppError';
 
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
 let deleteVehicleUseCase: DeleteVehicleUseCase;
-
 let vehicleData: Vehicle;
 
 beforeAll(() => {
@@ -21,14 +20,10 @@ describe('Delete Vehicle Use Case', () => {
   };
   it('should be able to delete a vehicle', async () => {
     const vehicle = await vehicleRepositoryInMemory.create(vehicleData);
-
     await deleteVehicleUseCase.execute(vehicle.id as string);
-
     const vehicleShow = await vehicleRepositoryInMemory.findById(vehicle.id as string);
-
     expect(vehicleShow).toBeNull();
   });
-
   it('should not be able to delete a vehicle with a id that does not exists', async () => {
     await expect(deleteVehicleUseCase.execute('123')).rejects.toEqual(
       new AppError('Vehicle does not exist', 400),

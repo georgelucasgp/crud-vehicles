@@ -11,11 +11,7 @@ class ShowVehicleModelUseCase {
 
   async show(id: string) {
     const vehicleModelAlreadyExists = await this.vehicleModelRepository.findById(id);
-
-    if (!vehicleModelAlreadyExists) {
-      throw new AppError('Vehicle does not exist', 400);
-    }
-
+    if (!vehicleModelAlreadyExists) throw new AppError('Vehicle does not exist', 400);
     const vehicleModel = await this.vehicleModelRepository.show(id);
     return vehicleModel;
   }

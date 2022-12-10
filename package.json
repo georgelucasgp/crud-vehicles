@@ -6,13 +6,12 @@
   "scripts": {
     "dev": "tsnd --respawn -r tsconfig-paths/register --exit-child --transpile-only --inspect --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "jest",
-    "build": "tsc",
-    "start": "node dist/src/shared/infra/http/server.js"
+    "start": "prisma migrate deploy && tsc && node dist/src/shared/infra/http/server.js"
   },
   "_moduleAliases": {
-    "@modules": "src/modules",
-    "@config": "src/config",
-    "@shared": "src/shared"
+    "@modules": "dist/src/modules",
+    "@config": "dist/src/config",
+    "@shared": "dist/src/shared"
   },
   "dependencies": {
     "@prisma/client": "^4.1.1",

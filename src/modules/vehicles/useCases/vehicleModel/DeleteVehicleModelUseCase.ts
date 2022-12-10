@@ -11,13 +11,8 @@ class DeleteVehicleModelUseCase {
 
   async execute(id: string) {
     const vehicleModelAlreadyExists = await this.vehicleModelsRepository.findById(id);
-
-    if (!vehicleModelAlreadyExists) {
-      throw new AppError('Vehicle does not exist', 400);
-    }
-
+    if (!vehicleModelAlreadyExists) throw new AppError('Vehicle does not exist', 400);
     await this.vehicleModelsRepository.delete(vehicleModelAlreadyExists);
-
     return vehicleModelAlreadyExists;
   }
 }

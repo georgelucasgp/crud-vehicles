@@ -10,7 +10,6 @@ class PrismaVehicleRepository implements VehicleRepositoryInterface {
         id,
       },
     });
-
     return vehicle;
   }
 
@@ -20,13 +19,11 @@ class PrismaVehicleRepository implements VehicleRepositoryInterface {
         license_plate,
       },
     });
-
     return vehicle;
   }
 
   async list(): Promise<Vehicle[]> {
     const vehicle = await prisma.vehicle.findMany();
-
     return vehicle;
   }
 

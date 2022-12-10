@@ -8,7 +8,6 @@ import { AppError } from '@shared/errors/AppError';
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
 let vehicleModelsRepositoryInMemory: VehicleModelRepositoryInMemory;
 let createVehicleUseCase: CreateVehicleUseCase;
-
 let vehicleData: Vehicle;
 let vehicleModelData: VehicleModel;
 
@@ -39,13 +38,10 @@ describe('Create Vehicle Use Case', () => {
       ...vehicleData,
       vehicles_model_id: vehicleModel.id as string,
     });
-
     expect(vehicle).toHaveProperty('id');
   });
-
   it('should not be able to create a new vehicle with license plate already exists', async () => {
     await vehicleRepositoryInMemory.create(vehicleData);
-
     await expect(createVehicleUseCase.execute(vehicleData)).rejects.toEqual(
       new AppError('Vehicle already Exists', 400),
     );

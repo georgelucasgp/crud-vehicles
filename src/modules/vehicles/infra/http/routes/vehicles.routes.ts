@@ -1,35 +1,21 @@
 import { Router } from 'express';
 
-import { CreateVehicleController } from '../controllers/vehicle/CreateVehicleController';
-import { DeleteVehicleController } from '../controllers/vehicle/DeleteVehicleController';
-import { ShowVehicleController } from '../controllers/vehicle/ShowVehicleController';
-import { UpdateVehicleController } from '../controllers/vehicle/UpdateVehicleController';
-
+import { VehicleController } from '../controllers/VehicleController';
 const vehiclesRoutes = Router();
-
-const createVehicleController = new CreateVehicleController();
-const updateVehicleController = new UpdateVehicleController();
-const deleteVehicleController = new DeleteVehicleController();
-const showVehicleController = new ShowVehicleController();
+const vehicleController = new VehicleController();
 
 vehiclesRoutes.post('/vehicles', (request, response) =>
-  createVehicleController.handle(request, response),
+  vehicleController.create(request, response),
 );
-
 vehiclesRoutes.get('/vehicles/:id/show', (request, response) =>
-  showVehicleController.show(request, response),
+  vehicleController.show(request, response),
 );
-
-vehiclesRoutes.get('/vehicles', (request, response) =>
-  showVehicleController.list(request, response),
-);
-
+vehiclesRoutes.get('/vehicles', (request, response) => vehicleController.list(request, response));
 vehiclesRoutes.put('/vehicles/:id', (request, response) =>
-  updateVehicleController.handle(request, response),
+  vehicleController.update(request, response),
 );
-
 vehiclesRoutes.delete('/vehicles/:id', (request, response) =>
-  deleteVehicleController.handle(request, response),
+  vehicleController.delete(request, response),
 );
 
 export { vehiclesRoutes };

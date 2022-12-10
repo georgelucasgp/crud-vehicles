@@ -4,6 +4,7 @@ const { execSync } = require('child_process');
 const { resolve } = require('path');
 const { Client } = require('pg');
 const prismaCli = resolve(__dirname, '..', 'node_modules', '.bin', 'prisma');
+// const prismaCli = "./node_modules/.bin/prisma";
 
 require('dotenv').config({
   path: resolve(__dirname, '..', '.env.test'),
@@ -12,7 +13,7 @@ require('dotenv').config({
 class CustomEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config);
-    this.schema = `code_schema_${cuid()}`;
+    this.schema = `schema_${cuid.slug()}`;
     this.connectionString = `${process.env.DATABASE_URL}${this.schema}`;
   }
 

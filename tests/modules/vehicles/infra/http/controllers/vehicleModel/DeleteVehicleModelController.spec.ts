@@ -11,15 +11,11 @@ describe('Delete Vehicle Model Controller', () => {
       brand: 'Volkswagen',
       model_year: 2018,
     });
-
     const response = await request(app).delete(`/vehicle-models/${vehicleModel.body.id}`);
-
     expect(response.status).toBe(200);
   });
-
   it('should not be able to delete a vehicle model that does not exists', async () => {
     const response = await request(app).delete('/vehicle-models/123');
-
     expect(response.status).toBe(400);
   });
 });

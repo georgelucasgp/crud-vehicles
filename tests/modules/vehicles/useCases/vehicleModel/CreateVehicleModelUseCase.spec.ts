@@ -5,7 +5,6 @@ import { AppError } from '@shared/errors/AppError';
 
 let vehicleModelRepositoryInMemory: VehicleModelRepositoryInMemory;
 let createVehicleModelUseCase: CreateVehicleModelUseCase;
-
 let vehicleModelData: VehicleModel;
 
 beforeAll(() => {

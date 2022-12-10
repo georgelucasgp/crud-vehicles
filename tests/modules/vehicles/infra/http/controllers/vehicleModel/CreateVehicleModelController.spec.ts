@@ -11,18 +11,15 @@ describe('Create Vehicle Model Controller', () => {
       brand: 'Volkswagen',
       model_year: 2018,
     });
-
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('id');
   });
-
   it('should not be able to create a new vehicle model with name already exists', async () => {
     const response = await request(app).post('/vehicle-models').send({
       model: 'Gol',
       brand: 'Volkswagen',
       model_year: 2018,
     });
-
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('message');
   });

@@ -1,4 +1,4 @@
-import { vehicleModelsRoutes } from '@modules/vehicles/infra/http/routes/vehicleModelsRoutes';
+import { vehicleModelsRoutes } from '@modules/vehicles/infra/http/routes/vehicleModel.route';
 import { vehiclesRoutes } from '@modules/vehicles/infra/http/routes/vehicles.routes';
 import { Router } from 'express';
 

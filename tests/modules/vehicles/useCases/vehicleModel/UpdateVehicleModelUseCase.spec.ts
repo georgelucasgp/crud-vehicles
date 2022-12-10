@@ -5,7 +5,6 @@ import { AppError } from '@shared/errors/AppError';
 
 let vehicleModelRepositoryInMemory: VehicleModelRepositoryInMemory;
 let updateVehicleModelUseCase: UpdateVehicleModelUseCase;
-
 let vehicleModelData: VehicleModel;
 
 beforeAll(() => {
@@ -19,7 +18,6 @@ describe('Update Vehicle Model Use Case', () => {
     brand: 'Volkswagen',
     model_year: 2012,
   };
-
   it('should be able to update a vehicle Model', async () => {
     const vehicleModel = await vehicleModelRepositoryInMemory.create(vehicleModelData);
     const vehicleModelUpdated = await updateVehicleModelUseCase.execute({
@@ -28,10 +26,8 @@ describe('Update Vehicle Model Use Case', () => {
       brand: 'Toyota',
       model_year: 2020,
     });
-
     expect(vehicleModelUpdated.model).toEqual('Corola');
   });
-
   it('should not be able to update a vehicle Model with invalid id', async () => {
     await expect(
       updateVehicleModelUseCase.execute({

@@ -1,16 +1,15 @@
-FROM node:slim
-RUN apt-get update && apt-get install -y openssl libssl-dev
+FROM node:latest
+
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm i
 
 COPY . .
-RUN npm run build
 
 
 EXPOSE 3333
   
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "start" ] 
